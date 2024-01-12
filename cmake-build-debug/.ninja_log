@@ -1,0 +1,18 @@
+# ninja log v5
+0	102	1705078030323745119	build.ninja	c08cc72ac5d37c15
+7	1127	1705073573520237749	CMakeFiles/Grocery_Store.dir/main.cpp.o	d5709a56ba4e99f3
+7	1379	1705072144886881151	CMakeFiles/Grocery_Store.dir/Fruit.cpp.o	2ee43dc14d22c845
+1194	1452	1705074711653890525	Grocery_Store	e422096524f309c9
+7	1375	1705072144886884692	CMakeFiles/Grocery_Store.dir/Product.cpp.o	8c48bf158355f9ad
+19	1193	1705074711395480810	CMakeFiles/Grocery_Store.dir/Inventory.cpp.o	fcd20996f202879
+18	1577	1705078374568988176	CMakeFiles/Grocery_Store.dir/Product.cpp.o	8c48bf158355f9ad
+18	1580	1705078374568863678	CMakeFiles/Grocery_Store.dir/Fruit.cpp.o	2ee43dc14d22c845
+19	1581	1705078374557404032	CMakeFiles/Grocery_Store.dir/Sale.cpp.o	5e480a9c6cfb820a
+16	1593	1705078374588519173	CMakeFiles/Grocery_Store.dir/main.cpp.o	d5709a56ba4e99f3
+15	1022	1705078721732538727	CMakeFiles/Grocery_Store.dir/main.cpp.o	d5709a56ba4e99f3
+16	1025	1705078721728447407	CMakeFiles/Grocery_Store.dir/Sale.cpp.o	5e480a9c6cfb820a
+8	1767	1705078920273743327	CMakeFiles/Grocery_Store.dir/Fruit.cpp.o	2ee43dc14d22c845
+7	1773	1705078920279191116	CMakeFiles/Grocery_Store.dir/main.cpp.o	d5709a56ba4e99f3
+18	1280	1705079112760754981	CMakeFiles/Grocery_Store.dir/Product.cpp.o	8c48bf158355f9ad
+18	1283	1705079112760753523	CMakeFiles/Grocery_Store.dir/Fruit.cpp.o	2ee43dc14d22c845
+17	1284	1705079112765449537	CMakeFiles/Grocery_Store.dir/main.cpp.o	d5709a56ba4e99f3
