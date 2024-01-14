@@ -3,16 +3,16 @@
 //
 #include "Inventory.h"
 #include <iostream>
-#include <fstream>  // Include this header for file I/O
-#include <sstream>  // Include this header for string stream
+#include <fstream>
+#include <sstream>
 
 Inventory::~Inventory() {
-    for (Product* product : products) {
+    for (Product* product : products) { // Delete dynamically allocated Product objects
         delete product;
     }
 }
 
-void Inventory::addProduct(Product* product) {
+void Inventory::addProduct(Product* product) { // Add a new product to the inventory
     // Check if the product already exists
     Product* existingProduct = searchProduct(product->getName());
 
@@ -28,7 +28,7 @@ void Inventory::addProduct(Product* product) {
     // Save the updated inventory to the file
     saveInventoryToFile();
 }
-
+// Update quantity of a product
 void Inventory::updateQuantity(const std::string& productName, int newQuantity) {
     Product* product = searchProduct(productName);
     if (product) {
@@ -37,7 +37,7 @@ void Inventory::updateQuantity(const std::string& productName, int newQuantity) 
         saveInventoryToFile();
     }
 }
-
+// Generate and display an inventory report
 void Inventory::generateInventoryReport() const {
     if (products.empty()) {
         std::cout << "Inventory is empty.\n";
@@ -51,7 +51,7 @@ void Inventory::generateInventoryReport() const {
     }
     std::cout << "=============================\n";
 }
-
+// Search for a product by name
 Product* Inventory::searchProduct(const std::string& productName) const {
     for (Product* product : products) {
         if (product->getName() == productName) {
@@ -60,24 +60,24 @@ Product* Inventory::searchProduct(const std::string& productName) const {
     }
     return nullptr;
 }
-
-void Inventory::recordSale(Product* product, int soldQuantity) {
+// Record a sale and update inventory
+void Inventory::recordSale(const Product* product, int soldQuantity) {
     // Check if the product is in the inventory
     auto it = std::find(products.begin(), products.end(), product);
     if (it != products.end()) {
         // Reduce the available quantity and update sold quantity
-        product->setQuantity(product->getQuantity() - soldQuantity);
-        product->setSoldQuantity(product->getSoldQuantity() + soldQuantity);
+        const_cast<Product*>(*it)->setQuantity((*it)->getQuantity() - soldQuantity);
+        const_cast<Product*>(*it)->setSoldQuantity((*it)->getSoldQuantity() + soldQuantity);
 
         // Record the sale
-        Sale sale(product->getName(), soldQuantity, product->getPrice());
+        Sale sale((*it)->getName(), soldQuantity, (*it)->getPrice());
         sales.push_back(sale);
 
         // Save the sale to the file
         saveSalesToFile();
     }
 }
-
+// Generate and display a profit report
 void Inventory::generateProfitReport() const {
     double totalRevenue = 0.0;
 
@@ -92,7 +92,7 @@ void Inventory::generateProfitReport() const {
     std::cout << "Total Revenue: $" << totalRevenue << "\n";
     std::cout << "=========================\n";
 }
-
+// Save the inventory to a file
 void Inventory::saveInventoryToFile() const {
     std::ofstream outputFile("Inventory.txt");
     if (!outputFile.is_open()) {
@@ -108,7 +108,7 @@ void Inventory::saveInventoryToFile() const {
 
     outputFile.close();
 }
-
+// Load inventory from a file
 void Inventory::loadInventoryFromFile() {
     std::ifstream inputFile("Inventory.txt");
     if (!inputFile.is_open()) {
@@ -141,23 +141,7 @@ void Inventory::loadInventoryFromFile() {
     inputFile.close();
 }
 
-void Inventory::recordSale(const Product* product, int soldQuantity) {
-    // Check if the product is in the inventory
-    auto it = std::find(products.begin(), products.end(), product);
-    if (it != products.end()) {
-        // Reduce the available quantity and update sold quantity
-        product->setQuantity(product->getQuantity() - soldQuantity);
-        product->setSoldQuantity(product->getSoldQuantity() + soldQuantity);
-
-        // Record the sale
-        Sale sale(product->getName(), soldQuantity, product->getPrice());
-        sales.push_back(sale);
-
-        // Save the sale to the file
-        saveSalesToFile();
-    }
-}
-
+// Save sales data to a file
 void Inventory::saveSalesToFile() const {
     std::ofstream outputFile("Sales.txt", std::ios::app);  // Open file in append mode
     if (!outputFile.is_open()) {
@@ -172,7 +156,7 @@ void Inventory::saveSalesToFile() const {
 
     outputFile.close();
 }
-
+// Load sales data from a file
 void Inventory::loadSalesFromFile() {
     std::ifstream inputFile("Sales.txt");
     if (!inputFile.is_open()) {

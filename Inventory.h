@@ -22,7 +22,7 @@ public:
     void generateInventoryReport() const;
     Product* searchProduct(const std::string& productName) const;
 
-    void recordSale(Product* product, int soldQuantity);
+    void recordSale(const Product* product, int soldQuantity);
     void generateProfitReport() const;
     void saveSalesToFile() const;  // Function to save sales data to file
     void loadSalesFromFile();  // Function to load sales data from file
